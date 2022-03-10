@@ -1,0 +1,17 @@
+Please find the remarks: 
+
+Remark 1: 
+
+Geofences activities API: 
+This API helps to fetch the details of all the activities, such as geofence entry time, exit time etc, which devices perform w.r.t various geofences across a defined date/time range.
+Documentation Link: https://www.mapmyindia.com/api/advanced-maps/doc/geofence#/geofence/get_geofences_activities
+
+Remark 2: 
+Alarm API: 
+With the help of Alarm API you are able to set an alarm notification for a device whenever it enters a geofence area. 
+Documentation Link: https://www.mapmyindia.com/api/advanced-maps/doc/alarm#/alarm/createAlarm
+
+
+// Online reference
+1. https://www.mapmyindia.com/api/advanced-maps/WebSDK-LiveDemo/mapmyindia_draw_polygon
+2. https://www.mapmyindia.com/api/advanced-maps/WebSDK-LiveDemo/mapmyindia_editable_polygon 

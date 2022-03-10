@@ -1,0 +1,161 @@
+   <!-- Page Wrapper -->
+<script>
+    var url = window.location.origin+'/app';
+    console.log(">>> sidebar url ",url);
+    $(".navbar-nav").on('click',function(e){
+        console.log(">>>> clicked event ", e);
+
+        $(".nav-item").removeClass('active');
+        $(this).addClass('active');
+        console.log(">>> current event ",$(this));
+    })
+</script>
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <div class="sidebar-brand-icon ">
+                <!-- <i class="fas fa-laugh-wink"></i> -->
+                <img src="/img/logo.jpg" alt="Acsl" class="img img-responsive" width="50" height="50"/>
+            </div>
+            <div class="sidebar-brand-text mx-3">  Admin </div>
+            <!-- <div class="sidebar-brand-text mx-3"> ACSL Admin <sup>2</sup></div> -->
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" href="./dashboard.html">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard </span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Interface
+        </div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Trails</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="./trail-maps.html">Trails</a>
+                    <!-- <h6 class="collapse-header">Custom Components:</h6>
+                    <a class="collapse-item" href="buttons.html">Buttons</a>
+                    <a class="collapse-item" href="cards.html">Cards</a> -->
+                </div>
+            </div>
+        </li>
+
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-clipboard-list"></i>
+                <span>Geofence</span>
+            </a>
+            <div id="collapseUtilities" class="collapse" aria-labelledby="geofenceUtilities"
+                data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Geofence Utilities:</h6>
+                    <a class="collapse-item" href="./geofence-config.html">Configuration</a>
+                    <a class="collapse-item" href="./geofence-group.html">Group</a>
+                    <a class="collapse-item" href="./geofene-stats.html">Stats</a>
+                    <!-- <h6 class="collapse-header">Custom Utilities:</h6>
+                    <a class="collapse-item" href="utilities-color.html">Colors</a>
+                    <a class="collapse-item" href="utilities-border.html">Borders</a>
+                    <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                    <a class="collapse-item" href="utilities-other.html">Other</a> -->
+                </div>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReports"
+                aria-expanded="true" aria-controls="collapseReports">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Reports</span>
+            </a>
+            <div id="collapseReports" class="collapse" aria-labelledby="reportsUtilities"
+                data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="./reports-device.html">Devices</a>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#liveUtilities"
+                aria-expanded="true" aria-controls="liveUtilities">
+                <i class="fas fa-fw fa-bars"></i>
+                <span>Live</span>
+            </a>
+            <div id="liveUtilities" class="collapse" aria-labelledby="livedeviceUtilities"
+                data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <!-- <h6 class="collapse-header">Custom Utilities:</h6> -->
+                    <a class="collapse-item" href="./device-list.html">Device List</a>
+                    <a class="collapse-item" href="live-maps.html">Maps</a>
+                
+                </div>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#alarmUtilities"
+                aria-expanded="true" aria-controls="alarmUtilities">
+                <i class="fas fa-fw fa-bell"></i>
+                <span>Alarm</span>
+            </a>
+            <div id="alarmUtilities" class="collapse" aria-labelledby="alarmdataUtilities"
+                data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <!-- <h6 class="collapse-header">Custom Utilities:</h6> -->
+                    <a class="collapse-item" href="./alarm-config.html">Configuration</a>
+                    <a class="collapse-item" href="./alarm-log.html">Logs</a>
+                    <!-- <a class="collapse-item" href="utilities-color.html">Configuration</a>
+                    <a class="collapse-item" href="utilities-border.html">Logs</a> -->
+                
+                </div>
+            </div>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReference"
+                aria-expanded="true" aria-controls="collapseReference">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Reference</span>
+            </a>
+            <div id="collapseReference" class="collapse" aria-labelledby="RefheadingUtilities"
+                data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Custom Utilities:</h6>
+                    <a class="collapse-item" href="utilities-color.html">Colors</a>
+                    <a class="collapse-item" href="utilities-border.html">Borders</a>
+                    <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                    <a class="collapse-item" href="utilities-other.html">Other</a>
+
+
+                    <h6 class="collapse-header">Custom Utilities:</h6>
+                    <a class="collapse-item" href="utilities-color.html">Colors</a>
+                    <a class="collapse-item" href="utilities-border.html">Borders</a>
+                    <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                    <a class="collapse-item" href="utilities-other.html">Other</a>
+                </div>
+            </div>
+        </li>  
+       
+
+    </ul>
+    <!-- End of Sidebar -->

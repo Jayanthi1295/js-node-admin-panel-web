@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title> ACSL | Geofence Group Page</title>
+
+    <!-- Custom fonts for this template-->
+    <!-- <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet"> -->
+
+    <!-- Custom styles for this template-->
+    <!-- <link href="../css/sb-admin-2.min.css" rel="stylesheet"> -->
+    <style type="text/css">
+        #map1{
+            position: absolute;
+            left: 2px; top: 2px; 
+            right: 2px; bottom: 2px; 
+            border: 1px solid #cccccc; 
+        }
+    </style>
+       <!-- Bootstrap core JavaScript-->
+       <script src="../vendor/jquery/jquery.min.js"></script>
+       <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
+   
+    <script src="https://apis.mapmyindia.com/advancedmaps/v1/709ba551f47efb30edcb5bd85cc66558/map_load?v=1.5&plugin=polylinedecorator,path.drag"></script>
+</head>
+<div id="header"></div>
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+         
+        <div id="sidebar"></div>
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+                <div id="toolbar"></div>
+                <!-- Topbar -->
+               
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                     
+                    <!-- Page Heading -->
+                    <div class="align-items-center justify-content-between mb-4">
+                        <!-- <h1 class="h3 mb-0 text-gray-800">Geofence Configuration</h1> -->
+                                <div class="row inner-heading-block">
+                                    <div class="col-lg-6">
+                                        <h1 class="h3 mb-0 text-gray-800">Geofence Group</h1>
+                                    </div>
+                                    <div class="col-lg-3"></div>
+                                    <div class="col-lg-3">
+                                     <div class="icon-tray">
+                                                
+                                        <!-- <button id="fileupload"  type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm  " > <i
+                                            class="fas fa-upload"></i> Bulk Upload</button> &nbsp; -->
+                                             
+                                            <a href="#" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-md"  data-toggle="modal" data-target="#CreateModal"><i
+                                                    class="fas fa-plus fa-sm text-white-50"></i> Create New Geofence Group</a>         
+                                            <!-- <a id="creategeofence" class="btn btn-primary ripple darkGreyBtn"  > Create New Geofence</a> -->
+                                    </div>
+                                   </div>
+                               </div>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                              <li class="breadcrumb-item"><a href="#">Home</a></li>
+                              <li class="breadcrumb-item"><a href="#">Geofence</a></li>
+                              <li class="breadcrumb-item active" aria-current="page">Geofence Group</li>
+                            </ol>
+                          </nav>
+                        <p class="mb-4">Geofence Group Info.</p>
+                        <!-- <a href="/live-maps.html" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Visit Tracking</a> -->
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="card position-relative">
+                        <!-- <div class="row">
+                            <h5 class="card-header">Featured</h5>
+                            <div class="card-body">
+                              <h5 class="card-title">Special title treatment</h5>
+                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                              <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                          </div> -->
+                          <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Total Count :  <span class="btn btn-primary btn-sm">1</span></h6>
+                        </div>
+                        <div class="card-body ">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                          
+                                            <th>Name</th>
+                                            <th>No of Geofence</th>
+                                            <th>Created On</th>
+                                            <th>Updated On</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                           
+                                                <th>Name</th>
+                                                <th>No of Geofence</th>
+                                                <th>Created On</th>
+                                                <th>Updated On</th>
+                                                <th>Action</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <tr>
+                                           
+                                                <td>aa</td>
+                                                <td>5</td>
+                                                <td>100</td>
+                                                <td>assanj, hh</td>
+                                                <td>...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            <!-- <div class="row ">
+                               <div class="col-lg-12">
+
+                               </div>
+                            </div> -->
+                        </div>     
+                          
+                       </div>
+                    </div>
+                    <!-- <div class="row">
+                       
+                    
+                        <div class="col-lg-6">
+
+                            <div class="btn-div" ><button onclick="drawCarMarkerOnPolyline()" id="visible" >Redraw Polyline</button></div>
+                            <div class="btn-div" ><button onclick="drawArrowOnPolyline()" id="visible" >Draw Arrow on Polyline</button></div>
+                            <div class="btn-div" ><button onclick="drawRepeatedPatternOnPolyline()" id="visible" >Draw Repeated Pattern</button></div>
+                    
+                            <div class="btn-div" ><button onclick="removePolyline()" id="visible" >Remove Polyline</button></div>
+
+                        </div>
+
+                    
+                        <div class="col-lg-6">
+                            
+                        </div>
+
+                    </div> -->
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Acsl Admin Panel @ 2022</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+            </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+          
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+   <!--  Modal section start -->
+  
+
+   <div class="modal fade" id="CreateModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
+   aria-hidden="true">
+     <div class="modal-dialog modal-lg" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h5 class="modal-title" id="createModalLabel">Create Geofence Group</h5>
+                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">×</span>
+                 </button>
+             </div>
+             <div class="modal-body">
+                 
+                <form>
+                    <div class="form-group">
+                          <label for="name" class="col-form-label">Geofence Group Name</label>
+                          <input type="text" class="form-control" name="name" id="name"/>
+                    </div>
+                    <!-- <div class="form-group">
+                        <div class="col-md-6">
+                           <label for="file2" class="col-form-label">Latitude</label>
+                           <input type="text" class="form-control"  name="lat" id="lat"/>
+                        </div>
+                        <div class="col-md-6">
+                           <label for="file2" class="col-form-label">Longitude</label>
+                           <input type="text" class="form-control"  name="long" id="long"/>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="form-group">
+                            <label for="name" class="col-form-label">Choose Geofence Type</label>  <br/>
+                           <input type ="radio" name="geotype" id="geotype" value="Circle" /> &nbsp; Circle  &nbsp;   
+                           <input type ="radio" name="geotype" id="geotype" value="Polygon" />&nbsp; Polygon &nbsp;   
+                           <input type ="radio" name="geotype" id="geotype" value="Pointer" />&nbsp; Pointer &nbsp;   
+                    </div>
+                    <br/>
+                    <div class="form-group">
+                          <label for="speed" class="col-form-label">Max Speed(Km)</label>
+                          <input type="text" class="form-control" name="speed" id="speed"/>
+                    </div> -->
+              </form>
+                
+            </div>
+             <div class="modal-footer">
+                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                 <button class="btn btn-primary" id="logout" type="button" >Create</button>
+                 <!-- <a class="btn btn-primary" href="login.html">Logout</a> -->
+             </div>
+         </div>
+     </div>
+   </div> 
+   <!-- Modal section end --> 
+  
+ 
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin-2.min.js"></script>
+    <script>
+          $("#header").load("header.html"); 
+          $("#toolbar").load("toolbar.html");
+          $("#sidebar").load("sidebar.html"); 
+          $("#footer").load("footer.html"); 
+      
+        window.onload = function () {
+            var API_URL = "http://localhost:8000/api/" +"user/getdata"; 
+              console.log(">>> API_URL ",API_URL);
+                // $.ajax({
+                //         type: 'POST',
+                //         url: API_URL,
+                //         data: dataString,
+                //         cache: false,
+                //         dataType : "json",
+                //        // data: $('#addCommentForm').serialize(), 
+                //         success: function(response) {
+                //             console.log(">>> succsss response ",response);
+                //           lStorage.setItem("user", JSON.stringify(response));
+                                
+                //           //  $(".message-content").html('<div class="alert alert-success" id="success-alert"><button type="button" class="close" data-dismiss="alert">x</button><strong>Success!!!</strong>  Successfully Logged In</div>');
+                //             //$("#commentList").append("Name:" + $("#name").val() + "<br/>comment:" + $("#body").val());
+                //             // setTimeout(function(){
+                //             //   window.location.href='/app/dashboard.html';
+                //             // },100);
+                //         },
+                //         error: function(err) {
+                //             console.log(">>>>>>> error ",err);
+                //            // $(".message-content").html('<div class="alert alert-danger" id="success-alert"><button type="button" class="close" data-dismiss="alert">x</button><strong>Warning!!!</strong>  Invalid Credentials</div>');
+                //             //$("#commentList").append($("#name").val() + "<br/>" + $("#body").val());
+                //             //alert("There was an error submitting comment");
+                //         }
+                //     });
+        }
+    </script>
+</body>
+
+</html>

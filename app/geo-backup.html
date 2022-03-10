@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title> ACSL | Geofence Config Page</title>
+
+    <!-- Custom fonts for this template-->
+    <!-- <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet"> -->
+
+    <!-- Custom styles for this template-->
+    <!-- <link href="../css/sb-admin-2.min.css" rel="stylesheet"> -->
+    <style type="text/css">
+        /* #map1{
+            position: absolute;
+            left: 2px; top: 2px; 
+            right: 2px; bottom: 2px; 
+            border: 1px solid #cccccc; 
+        } */
+    </style>
+       <!-- Bootstrap core JavaScript-->
+       <script src="../vendor/jquery/jquery.min.js"></script>
+       <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
+       <!-- <script src="https://apis.mapmyindia.com/advancedmaps/v1/709ba551f47efb30edcb5bd85cc66558/map_load?v=1.3&plugin=editable,path.drag"></script> -->
+    <script src="https://apis.mapmyindia.com/advancedmaps/v1/709ba551f47efb30edcb5bd85cc66558/map_load?v=1.5&plugin=polylinedecorator,editable,path.drag"></script>
+</head>
+<div id="header"></div>
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+         
+        <div id="sidebar"></div>
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+                <div id="toolbar"></div>
+                <!-- Topbar -->
+               
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                     
+                    <!-- Page Heading -->
+                    <div class="align-items-center justify-content-between mb-4">
+                        <!-- <h1 class="h3 mb-0 text-gray-800">Geofence Configuration</h1> -->
+                           <div class="row inner-heading-block">
+                                    <div class="col-lg-6">
+                                        <h1 class="h3 mb-0 text-gray-800">Geofence Configuration</h1>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <span class="glyphicon glyphicon-refresh"></span>
+                                        <!-- <button class="btn btn-primary">
+                                           <i class="fas fa-rotate-90 text-white-50"></i> wee <span class="glyphicon glyphicon-refresh"></span>
+                                        </button> -->
+                                    </div>
+                                    <div class="col-lg-4">
+                                     <!-- <div class="icon-tray"> -->
+                                      <div>          
+                                        <!-- <button id="fileupload"  type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm  " > <i
+                                            class="fas fa-upload"></i> Bulk Upload</button> &nbsp; -->
+                                            <button class="d-none d-sm-inline-block btn btn-md btn-primary shadow-md"  id="refresh"><i
+                                                class="fa fa-refresh fa-sm text-white-50"></i> Refresh</button> &nbsp; &nbsp;  
+                                            <button class="d-none d-sm-inline-block btn btn-md btn-primary shadow-md"  data-toggle="modal" data-target="#UploadModal"><i
+                                                class="fas fa-upload fa-sm text-white-50"></i> Bulk Upload</button> &nbsp; &nbsp;   
+                                            <!-- <a href="#" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-md"  data-toggle="modal" data-target="#CreateModal"><i
+                                                    class="fas fa-plus fa-sm text-white-50"></i> Create New Geofence</a>          -->
+                                                    <a href="#" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-md" id="createmodal" onclick="openCreateModal()"><i
+                                                        class="fas fa-plus fa-sm text-white-50"></i> Create New Geofence</a>         
+                                    </div>
+                                   </div>
+                           </div>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                              <li class="breadcrumb-item"><a href="#">Home</a></li>
+                              <li class="breadcrumb-item"><a href="#">Geofence</a></li>
+                              <li class="breadcrumb-item active" aria-current="page">Geofence Config</li>
+                            </ol>
+                          </nav>
+                        <p class="mb-4">Geofence Configuration.</p>
+                        <!-- <a href="/live-maps.html" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Visit Tracking</a> -->
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="card position-relative">
+                        <!-- <div class="row">
+                            <h5 class="card-header">Featured</h5>
+                            <div class="card-body">
+                              <h5 class="card-title">Special title treatment</h5>
+                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                              <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                          </div> -->
+                          <div class="card-header py-3">
+                            <!-- <h6 class="m-0 font-weight-bold text-primary">Total Count :  <span class="btn btn-primary btn-sm">1</span></h6> -->
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6 class="m-0 font-weight-bold text-primary">Total Count :  <span class="btn btn-primary btn-sm">1</span></h6>
+                                </div>
+                                <div class="col-md-6 form-row">
+                                    <div class="col">
+                                        <span class="font-weight-bold">List</span>
+                                        <label class="switch">
+                                            <input type="checkbox" id="listswitch">
+                                            <span class="slider round"> </span> 
+                                        </label> 
+                                        <span class="font-weight-bold">Map</span>
+                                    </div>  
+                                    <div class="col">
+                                      <div class="geofence_dropdown hide">
+                                           <select id="geofence" name="geofence" class="form-control">
+                                              
+                                               
+                                           </select>
+                                      </div>
+                                    </div>  
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                             <div class="map-content mapfullCardView hide" id="mapView">
+
+                             </div>
+                            <div class="table-responsive list-content " >
+                                <table class="table table-bordered geofencetable" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th><input type="checkbox"/></th>
+                                            <th>ID</th>
+                                            <th>Type</th>
+                                            <th>Name</th>
+                                            <th>Radius(m)</th>
+                                            <th>Tag</th>
+                                            <th>Creation Time</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th><input type="checkbox"/> </th>
+                                                <th>ID</th>
+                                                <th>Type</th>
+                                                <th>Name</th>
+                                                <th>Radius(m)</th>
+                                                <th>Tag</th>
+                                                <th>Creation Time</th>
+                                                <th>Action</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody id="tablecontent">
+                                        <tr>
+                                            <td><input type="checkbox"/></td>
+                                                <td>aa</td>
+                                                <td>nnn</td>
+                                                <td>nn</td>
+                                                <td>100</td>
+                                                <td>assanj, hh</td>
+                                                <td>10:12:12 </td>
+                                                <td>...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>     
+                          
+                       </div>
+                    </div>
+                    <!-- <div class="row">
+                       
+                    
+                        <div class="col-lg-6">
+
+                            <div class="btn-div" ><button onclick="drawCarMarkerOnPolyline()" id="visible" >Redraw Polyline</button></div>
+                            <div class="btn-div" ><button onclick="drawArrowOnPolyline()" id="visible" >Draw Arrow on Polyline</button></div>
+                            <div class="btn-div" ><button onclick="drawRepeatedPatternOnPolyline()" id="visible" >Draw Repeated Pattern</button></div>
+                    
+                            <div class="btn-div" ><button onclick="removePolyline()" id="visible" >Remove Polyline</button></div>
+
+                        </div>
+
+                    
+                        <div class="col-lg-6">
+                            
+                        </div>
+
+                    </div> -->
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Acsl Admin Panel @ 2022</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+            </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+          
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+   <!--  Modal section start -->
+   <div class="modal fade" id="UploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel"
+   aria-hidden="true">
+     <div class="modal-dialog modal-lg" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h5 class="modal-title" id="uploadModalLabel">Bulk Upload</h5>
+                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">×</span>
+                 </button>
+             </div>
+             <div class="modal-body">
+                 
+                <form>
+                    <div class="form-group">
+                      <label for="exampleFormControlFile1">Upload a file</label>
+                      <input type="file" class="form-control-file" id="file1" name="file1">
+                    </div>
+                  </form>
+                  <div class="card">
+                    <div class="card-body">
+                      <span class="danger">Note:</span>
+                      <ol>
+                        <li>Fields marked with asterisk(*) are mandatory in excel sheet.</li>
+                        <li>Enter the data from third row in excel sheet.</li>
+                        <li>For Polygon, in Lat Column use series of Latitude i.e. 28.644800, 28.654800, 28.664800,… and in Long Column use series of Longitude i.e. 77.216721, 77.217721, 77.216821,…</li>
+                      </ol>
+                    </div>
+                 </div>
+                
+            </div>
+             <div class="modal-footer">
+                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                 <button class="btn btn-primary" id="logout" type="button" >Upload</button>
+                 <!-- <a class="btn btn-primary" href="login.html">Logout</a> -->
+             </div>
+         </div>
+     </div>
+   </div>
+   <!-- Create Modal start -->
+   <div class="modal fade" id="CreateModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
+   aria-hidden="true">
+     <div class="modal-dialog modal-lg large-modal" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h5 class="modal-title" id="createModalLabel">Create Geofence</h5>
+                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">×</span>
+                 </button>
+             </div>
+             <form id="create-form" method="post">
+             <div class="modal-body">
+             
+                  <div class="row">
+                    <div class="col-lg-6 add-vertical-line">
+                        <div class="form-group">
+                            <label for="name" class="col-form-label">Choose Geofence Type</label>  <br/>
+                            <select class="form-control geotype" name="geotype" id="geotype">
+                                <option value="" disabled selected>Select Geofence type</option>
+                                   <option value="Circle">Circle</option>
+                                   <option value="Polygon">Polygon</option>
+                                   <option value="Pointer">Pointer</option>
+                            </select> 
+                                <!-- <input type ="radio" class="geotype" name="geotype" id="geotypecircle" value="Circle" /> &nbsp; Circle  &nbsp;   
+                                <input type ="radio" class="geotype" name="geotype" id="geotypepolygon" value="Polygon" />&nbsp; Polygon &nbsp;   
+                                <input type ="radio" class="geotype" name="geotype" id="geotypepointer" value="Pointer" />&nbsp; Pointer &nbsp;    -->
+                        </div>
+                        <input type="hidden" id="editfield" name="editfield" value="0" />
+                        <div class="form-group">
+                                <label for="name" class="col-form-label">Geofence Name</label>
+                                <input type="text" class="form-control" name="name" id="name" required/>
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="file2" class="col-form-label">Latitude</label>
+                                <input type="text" class="form-control"  name="lat" id="lat" required autocomplete="off" onkeypress="if (event.which == 13 || event.keyCode == 13)
+                                showCircle();"/>
+                            </div>
+                            <div class="col">
+                                <label for="file2" class="col-form-label">Longitude</label>
+                                <input type="text" class="form-control"  name="long" id="long" required autocomplete="off" onkeypress="if (event.which == 13 || event.keyCode == 13)
+                                showCircle();"/>
+                            </div>
+                            
+                               <!-- <span>
+                                   <label></label>
+                                <button id="showonmap" class="btn btn-primary btn-sm" >>></button>
+                            </span> -->
+                        </div>
+                        <div class="form-group radius_block hide">
+                            <label for="speed" class="col-form-label">Enter Radius (in m)</label>
+                            <input type="number" class="form-control" name="radius" id="radius" autocomplete="off" />
+                            <!-- <input type="number" class="form-control" name="radius" id="radius" autocomplete="off"  onChange="showCircle();"/> -->
+                    </div>
+                        <!-- <div class="form-group speed_block hide">
+                                <label for="speed" class="col-form-label">Max Speed(Km)</label>
+                                <input type="text" class="form-control" name="speed" id="speed"/>
+                        </div> -->
+
+                    </br>  </br>
+                
+                        <div class="form-group">
+                              <button type="button" id="showonmap" class="btn btn-primary" >Show it on Map</button>
+                              <!-- <button class="btn btn-info" type="submit" id="logout" >Create</button> -->
+                        </div>
+
+                        
+                    </div>
+                    <div class="col-lg-6 ">
+                         <div id="geomap"></div>
+                         
+                    </div>
+                    <div class="note_block">
+                    </div>
+                    <div style="border-top: 1px solid #e9e9e9;margin-top: 20px;padding: 10px 10px 5px 17px;font-size: 13px;" id="result">loading..</div>
+                 </div>
+               
+
+                <!-- <form>
+                    <div class="form-group">
+                      <label for="exampleFormControlFile1">Upload a file</label>
+                      <input type="file" class="form-control-file" id="file1" name="file1">
+                    </div>
+                  </form>
+               -->
+                
+            </div>
+             <div class="modal-footer">
+                <button class="btn btn-info" type="submit" id="create" >Create</button>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                
+             </div>
+            </form>
+         </div>
+     </div>
+   </div> 
+   <!-- Create Modal end -->
+   <!-- Modal section end --> 
+    <!-- Core plugin JavaScript-->
+    <div id="footer"></div>
+    <!-- <script src="../vendor/jquery-easing/jquery.easing.min.js"></script> -->
+
+    <!-- Custom scripts for all pages-->
+    <!-- <script src="../js/sb-admin-2.min.js"></script> -->
+    <script>
+          $("#header").load("header.html"); 
+          $("#toolbar").load("toolbar.html");
+          $("#sidebar").load("sidebar.html"); 
+          $("#footer").load("footer.html"); 
+      
+       // window.onload = function () {
+            // var center = new L.LatLng(28.549948, 77.268241);
+            // new MapmyIndia.Map('geomap', {
+            //     center: center,
+            //     editable: true,
+            //     zoomControl: true,
+            //     hybrid: true
+            // });
+           
+     //   }
+
+     var lat = 28.6129602407977;
+             var lon = 77.22945570945740;
+             var radius = 0;
+             var marker;
+             var map, map1;
+             var currentDiameter;
+
+
+     function openCreateModal(){
+         alert("create");
+        $("#createModalLabel").text("Create Geofence");
+        $("#geotype").val('');
+        $("#name").val('');
+        $('#CreateModal').modal('show');
+     }
+     // 3. edit start 
+      function editGeofence(item){
+          alert(' do edit ');
+          $("#createModalLabel").text("Update Geofence");
+           
+          console.log(">>> this ",$(this), " >> item ", item, ">>> after parse ", JSON.stringify(item));
+          var geovalue = item.geometry;
+          console.log(">>> edit geofence ",geovalue);
+          $('#CreateModal').modal('show');
+          $("#geotype").val(item.type);
+          $("#name").val(item.name);
+          $("#radius").val(item.buffer); 
+         // $("#lat").val(parseItem.)
+            // var buffer=$("#radius").val();
+             //var geometryType = geotype;
+             var coordinates=[];
+              if(item.type=='Circle' || item.type=='Pointer'){
+                $(".radius_block").removeClass('hide'); 
+                $("#lat").val(geovalue.coordinates[0]);
+                $("#long").val(geovalue.coordinates[1]); 
+                showCircle_DOM();
+                
+              }else{
+                $(".radius_block").addClass('hide'); 
+                $("#lat").val('');
+                $("#long").val('');
+               // coordinates = polygons;
+              }
+          
+      }
+
+      function showCircle_DOM() {
+        document.getElementById('result').innerHTML = "";
+        if (currentDiameter)
+            map.removeLayer(currentDiameter);
+
+        lat = document.getElementById('lat').value;
+        lon = document.getElementById('long').value;
+        radius = document.getElementById('radius').value;
+        if (lat != '' && lon != '' && radius != '') {
+
+            if (parseFloat(lat) >= 180 || parseFloat(lat) <= -180 || parseFloat(lon) >= 180 || parseFloat(lon) <= -180) {
+            document.getElementById('result').innerHTML = "Invalid Lat lon values";
+                } else {
+        
+                if (marker)
+                    marker.setLatLng([lat, lon]);
+                currentDiameter = L.circle([lat, lon], {
+                    color: 'pink',
+                    fillColor: '#FFC0CB',
+                    fillOpacity: 0.5,
+                    radius: radius
+                });
+                currentDiameter.addTo(map);
+                map.fitBounds(currentDiameter.getBounds());
+            }
+        }
+        else {
+            document.getElementById('result').innerHTML = "Insufficient parameters";
+        }
+    }
+       // 3. edit end
+        // create geofence
+
+        $(document).ready(function(){
+            //1.  List
+            var localserver= true;
+            var API_URL = "http://localhost:8000/api/" +"geofences"; 
+            var token = localStorage.getItem("access_token");
+              //console.log(">>> API_URL  >>> ",API_URL);
+              var data, parseddata;
+                $.ajax({
+                        type: 'GET',
+                        url: API_URL,
+                        data: 'key=Geofence',
+                        cache: false,
+                        dataType : "json",
+                        headers: {"Authorization":"Bearer "+ token},
+                        success: function(response) {
+                           //console.log(">>> succsss response ",response);
+                          //  console.log(">>> response ",response.response)
+                          
+                           if(localserver){
+                            data = response.response;
+                            parseddata = data.data;    
+                           }else{
+                                // MMI data
+                             data= JSON.parse(response.data);
+                             parseddata = data.data;
+                           }
+                           
+                            var length= parseddata.length;
+
+                            // console.log(">>> data ", data,">>> length ",length," dd len ",_.size(data.data));
+                            console.log(">>>> d of 0 ",parseddata);
+                            var dropdown_content='<option val="" disabled selected>Select Geofence</option> ';
+                            var content=' '; 
+                            if(length>0){
+                                for (var i = 0; i < length; i++) {
+                                content += '<tr id="' + parseddata[i].id + '">';
+                                content += '<td><input id="check_' + [i].id + '" name="check_' + parseddata[i].id + '" type="checkbox" value="' + parseddata[i].id + '" autocomplete=OFF /></td>';
+                                content += '<td>' + parseddata[i].id + '</td>';
+                                content += '<td>' + parseddata[i].type + '</td>';
+                                content += '<td>' + parseddata[i].name + '</td>';
+                                content += '<td>' + (parseddata[i].buffer?parseddata[i].buffer:'-') + '</td>';
+                                content += '<td> </td>';
+                                let t1=new Date(parseddata[i].creationTime);
+                                content += '<td>' +  t1.toLocaleString('en-US')+ '</td>';
+                                content += '<td>';
+                                    var wrap = parseddata[i];
+        
+                                    wrap =  JSON.stringify(wrap)
+
+                                content += '<a href="#" onclick=\'editGeofence('+wrap+')\' class="edit " data-obj="'+JSON.stringify(parseddata[i])+'" data-id='+parseddata[i].id+' ><i class="fa fa-edit""></i> </a>  &nbsp; ';
+                               // content += '<a href="#" onclick="editGeofence(`'+parseddata[i].geometry+'`);" class="edit " data-obj="'+JSON.stringify(parseddata[i])+'" data-id='+parseddata[i].id+' data-toggle="modal" data-target="#CreateModal"><i class="fa fa-edit""></i> </a>  &nbsp; ';
+                                content +='<a href="#" class="delete"><i class="fa fa-trash""></i> </a>';
+                                content +=' </td>';
+                                content += '</tr>';
+
+                                dropdown_content+='<option buffer='+parseddata[i].buffer+' geotype='+parseddata[i].type+' data-id="'+parseddata[i].name+'" value='+JSON.stringify(parseddata[i].geometry)+'>'+parseddata[i].name+'</option>';
+                                }
+
+                            }else{
+                                content+='<tr style="text-align:center;"><td colspan="8">No Records Found</td></tr>';
+                            }
+                            
+                            //$("#tablecontent").html(tableBody);
+                            $("#geofence").html(dropdown_content);
+                            $('.geofencetable tbody').html(content); 
+                          //  $(".message-content").html('<div class="alert alert-success" id="success-alert"><button type="button" class="close" data-dismiss="alert">x</button><strong>Success!!!</strong>  Successfully Logged In</div>');
+                            //$("#commentList").append("Name:" + $("#name").val() + "<br/>comment:" + $("#body").val());
+                            // setTimeout(function(){
+                            //   window.location.href='/app/dashboard.html';
+                            // },100);
+                        },
+                        error: function(err) {
+                            console.log(">>>>>>> error ",err);
+                           // $(".message-content").html('<div class="alert alert-danger" id="success-alert"><button type="button" class="close" data-dismiss="alert">x</button><strong>Warning!!!</strong>  Invalid Credentials</div>');
+                            //$("#commentList").append($("#name").val() + "<br/>" + $("#body").val());
+                            //alert("There was an error submitting comment");
+                        }
+             });
+
+           
+            // 2. Create
+        // circle 
+          // circle drawing on MMI
+             var lat = 28.6129602407977;
+             var lon = 77.22945570945740;
+             var radius = 0;
+             var marker;
+             var map, map1;
+             var currentDiameter;
+
+             // polygon variables
+            var polygons = [];
+            var visbility = false;
+            var p1 = null;
+            var poly;
+            var pts;   
+
+             $("#lat").val(lat);
+             $("#long").val(lon);
+             $("#radius").val(radius);
+             var centre = new L.LatLng(lat, lon);
+             var mapOptions={
+                center: centre, 
+                zoomControl: true,
+                hybrid: true
+             }
+             // map view start
+             map1 = new MapmyIndia.Map('mapView', mapOptions);
+             // map view end
+             if (lat != '' && lon != '') {
+                if (checkValidLatlong(parseFloat(lat), parseFloat(lon))) {
+                   
+                    // map = new MapmyIndia.Map('geomap', {
+                    //        editable: true,
+                    //        center: centre, 
+                    //        zoomControl: true,
+                    //        hybrid: true});
+                    map=new MapmyIndia.Map("geomap",mapOptions);
+                }
+             }else{
+                $('#result').innerHTML = "Please enter lat/lon/radius";
+             }
+             
+             
+            $("#geofence").on('change',function(){
+                console.log(">>> this ",$(this));
+              var val = $(this).val();
+              var geotype = $('option:selected', this).attr('geotype');
+              var geoname = $('option:selected', this).attr('data-id');
+              var geobuffer = $('option:selected', this).attr('buffer');
+             // console.log(">>> val type ",typeof val, ">>>> val ",val , ">>> val.type ",geotype, "name ",geoname,">>> option ");
+              var parsedVal = JSON.parse(val);
+            //  console.log(">>> parsedval ", parsedVal);
+              var coordinates = (parsedVal && parsedVal.coordinates)? parsedVal.coordinates:centre;
+              console.log(">>> selected geofence value ",val, ">>> coordinates ",coordinates);
+                if(geotype=='Polygon'){
+                    console.log(">>> mapOptions ",mapOptions);
+                    removePolygon();
+                    map1.remove();
+                    map1 = new MapmyIndia.Map('mapView', mapOptions); // init
+                    var patArr = [];
+                        for (var i = 0; i < coordinates.length; i++) {
+                            patArr.push(new L.LatLng(coordinates[i][0], coordinates[i][1]));
+                        }
+                        var polygonOptions={
+                            fillColor:"blue",
+                                    fillOpacity: 0.8,
+                                    fitbounds:true,
+                                    fitboundOptions:{padding: 120,duration:1000},
+                                    popupHtml:'Route 1',
+                                    popupOptions:{offset: {'bottom': [0, -20]}
+                        }
+                        }
+                    poly= new L.polygon(patArr, polygonOptions);
+                      
+                    poly.on("mousedown", function(e) { /*mouseup event on polygon P2*/
+                     console.log(">>>> mouse down e ",e);
+                              // getBounds(poly, "Yellow polygon");
+                     });
+                 //   var p1 = new L.polygon(patArr, {color: "blue", draggable: true});/**creates a polygon with colour: green*/
+
+                    //lets listen to the click event to show a quick pop up as well. 
+                    poly.on("click", function (e) 
+                    {
+                    //Binding the popup to the polygon
+                    var popupcontent='<p><strong>Geofence Name:</strong>'+geoname+'</p><p><strong>Type:</strong>'+geotype+'</p>';
+                    poly.bindPopup(popupcontent).openPopup();
+                    });
+                    //Now simply add the polygon to the map.
+                    map1.addLayer(poly); 
+                    polygons.push(poly);
+                }
+                else if(geotype=='Circle'){
+                    console.log(">> currentDiameter ",currentDiameter);
+                    map1.remove();
+                   // map1.removeLayer(currentDiameter);
+                    map1 = new MapmyIndia.Map('mapView', mapOptions);
+                    var icon = L.icon({iconUrl: 'img/marker.png', iconRetinaUrl: 'img/marker.png', iconSize: [30, 30]});
+                        marker = L.marker(centre, {icon: icon, draggable: false}).addTo(map1);
+                   if (currentDiameter)
+                       map1.removeLayer(currentDiameter);
+
+                    lat = coordinates[0];
+                    lon = coordinates[1];
+                    radius = geobuffer;
+                    if (lat != '' && lon != '' && radius != '') {
+                        if (checkValidLatlong(parseFloat(lat), parseFloat(lon))) {
+                            if (marker)
+                                marker.setLatLng([lat, lon]);
+                            currentDiameter = L.circle([lat, lon], {
+                                color: 'pink',
+                                fillColor: '#FFC0CB',
+                                fillOpacity: 0.5,
+                                radius: radius
+                            });
+                            currentDiameter.addTo(map1);
+                            map1.fitBounds(currentDiameter.getBounds());
+                        }
+                    }
+                }
+                else{
+
+                }   
+               
+
+
+            }) ;
+            $("#listswitch").on('change', function() {
+                var checked = $(this).is(':checked');
+                console.log(">>>> checked ",checked);
+                   if(checked){
+                       // map block
+                       console.log(">>> map block");
+                     // $(".map-content").addclass()
+                     $(".list-content").addClass('hide');
+                     $(".map-content").removeClass('hide');
+                     $(".geofence_dropdown").removeClass('hide');
+                   }else{
+                       console.log(">>> list block");
+                       // list block
+                        $(".list-content").removeClass('hide');
+                        $(".map-content").addClass('hide');
+                        $('.geofence_dropdown').addClass('hide');
+                   } 
+                // var switchStatus = false;
+                // if ($(this).is(':checked')) {
+                //     switchStatus = $(this).is(':checked');
+                //     alert(switchStatus);// To verify
+                // }
+                // else {
+                // switchStatus = $(this).is(':checked');
+                // alert(switchStatus);// To verify
+                // }
+            });
+            //  $("#listswitch").on('click',function(){
+            //        var checked=$("#listswitch").val();
+            //        console.log(">>> checked ",checked);
+            //     });
+            $(".geotype").on('click',function(e){
+                console.log(">>> map ", map);
+                console.log(">>>> map options ", map.options)
+               var val = $(this).val();
+               // alert("geotype",val);
+               console.log(">>> geotype change ",val);
+                var content='';
+                if(val=='Circle'){
+                    map.remove(); // remove polygon map
+                    map = new MapmyIndia.Map('geomap', mapOptions); // initialize new map
+                        $(".radius_block").removeClass('hide');
+                            content+='<span class="text-danger"><strong>Note:</strong></span> <p>Drag marker to geofence at your desired location</p>';
+
+                        
+                            //  if (lat != '' && lon != '' && radius != '') {
+                            //     if (checkValidLatlong(parseFloat(lat), parseFloat(lon))) {
+                            //         var centre = new L.LatLng(lat, lon);
+                            //         map = new MapmyIndia.Map('geomap', {center: centre, zoomControl: true, hybrid: true});
+                                    /*1.create a MapmyIndia Map by simply calling new MapmyIndia.Map() and passsing it at the minimum div object, all others are optional...
+                                    2.all leaflet mapping functions can be called simply on the L object
+                                    3.MapmyIndia may extend and in future modify the customised/forked Leaflet object to enhance mapping functionality for developers, which will be clearly documented in the MapmyIndia API documentation section.*/
+                                    var icon = L.icon({iconUrl: 'img/marker.png', iconRetinaUrl: 'img/marker.png', iconSize: [30, 30]});
+                                    marker = L.marker(centre, {icon: icon, draggable: true}).addTo(map);
+                                    marker.on('dragend', function (event) {
+                                        var position = event.target.getLatLng();
+                                        console.log(">>> position ",position);
+                                        document.getElementById('lat').value = position.lat;/***set div elements values***/
+                                        document.getElementById('long').value = position.lng;
+                                        showCircle();
+                                    });
+                                    showCircle();
+                            //     }
+                            // }
+                            // else {
+                            //     document.getElementById('result').innerHTML = "Please enter lat/lon/radius";
+                            // }
+                }
+                else
+                {
+                    map.remove();
+                   // map = null;
+                    mapOptions.editable = true;
+                    console.log(">>> polygon map options ", mapOptions);
+                    map = new MapmyIndia.Map('geomap', mapOptions);
+                    
+                    $(".radius_block").addClass('hide');
+                    content+='';
+
+
+                   if(val=='Polygon'){
+                        L.EditControl = L.Control.extend({
+                        options: {
+                        position: 'topleft',
+                        callback: null,
+                        kind: 'Polygon',
+                        html: ''
+                        },
+                        onAdd: function(map) {
+                        var container = L.DomUtil.create('div', 'leaflet-control leaflet-bar'),
+                            link = L.DomUtil.create('a', '', container);
+
+                        link.href = '#';
+                        link.title = 'Create a new ' + this.options.kind;
+                        link.innerHTML = this.options.html;
+                        // L.DomEvent.on(link, 'click', L.DomEvent.stop)
+                        //     .on(link, 'click', function() {
+                        //     window.LAYER = this.options.callback.call(map.editTools);
+                        //     }, this);
+                        window.LAYER = this.options.callback.call(map.editTools);
+
+                        return container;
+                        }
+                         });
+
+                    L.NewPolygonControl = L.EditControl.extend({
+                        options: {
+                       // position: 'topleft',
+                        callback: map.editTools.startPolygon,
+                     //   kind: 'polygon',
+                          html: 'poly'
+                        }
+                    });
+
+                    map.addControl(new L.NewPolygonControl());
+                        var deleteShape = function(e) {
+
+                        if ((e.originalEvent.ctrlKey || e.originalEvent.metaKey) && this.editEnabled()) {
+                        this.editor.deleteShapeAt(e.latlng);
+                        }
+
+                        };
+                        map.on("click", function(e) {
+                            var pt = e.latlng;
+                            let t1=[pt.lat,pt.lng];
+                             polygons.push(t1)
+                              console.log(">>>> mapclick pt ",pt,">>> t1 ",t1);
+                        });
+                        map.on('layeradd', function(e) {
+                        if (e.layer instanceof L.Path) //delete shape
+                        e.layer.on('click', L.DomEvent.stop).on('click', deleteShape, e.layer);
+                        });
+                    }
+
+               
+                }
+                $(".note_block").html(content);
+                
+            })
+
+            $("#showonmap").on('click',function(){
+            // alert(">>> show it on map ");
+            var geotype= $(".geotype").val();
+            console.log(">>>> geotype ",geotype);
+            if(geotype=='circle'){
+                showCircle();
+            }
+                
+            })
+
+            $("#radius").on('change',function(){
+                showCircle();
+            })
+            $("#lat").on('change',function(){
+                showCircle();
+            })
+            $("#long").on('change',function(){
+                showCircle();
+            })
+            $("#refresh").on('click',function(){
+                location.reload();
+            })
+    // functions 
+
+     //   $("#create-form").on('click',function(e){
+         $('#CreateModal form').on('submit', function(e) {
+             e.preventDefault();
+             alert(">>> submit ");
+
+             console.log(">>> polygons coordinates ", polygons);
+             var name=$("#name").val();
+             var geotype=$(".geotype").val();
+            
+             var buffer=$("#radius").val();
+             var geometryType = geotype;
+             var coordinates=[];
+              if(geotype=='Circle' || geotype=='Pointer'){
+                var lat=$("#lat").val();
+                var long=$("#long").val(); 
+                geometryType = 'Point'; 
+                coordinates.push(lat);
+                coordinates.push(long);
+              }else{
+                coordinates = polygons;
+              }
+             var geometry ={
+                   type: geometryType,
+                   coordinates: coordinates
+             };
+             var data ={
+                 geotype : geotype,
+                 name: name,
+                 geometry: geometry,
+                 buffer : buffer
+
+             }
+             console.log(">>>> request data ",data);
+             $.ajax({
+                        type: 'POST',
+                        url: API_URL,
+                        data: data,
+                        cache: false,
+                        dataType : "json",
+                        headers: {"Authorization":"Bearer "+ token},
+                        success: function(response) {
+                          // console.log(">>> create response ",response);
+                          //  console.log(">>> response ",response.response)
+                           var data, parseddata;
+                           if(localserver){
+                            data = response.response;
+                            parseddata = data;    
+                           }else{
+                                // MMI data
+                             data= JSON.parse(response.data);
+                             parseddata = data.data;
+                           }
+                            var length= parseddata.length;
+                           //  console.log(">>> data ", data,">>> length ",length," dd len ",_.size(data.data), ">>> local data.meta. ", response.meta);
+                             console.log(">>>> d of 0 ",parseddata);
+                            if(response.meta.status===200){
+                              toastr.success(response.meta.msg)
+                              setTimeout(function(){
+                                 $("#CreateModal").hide();
+                                 location.reload();
+                              },3000);
+                            }else{
+                                toastr.warning(response.meta.msg)
+                            }
+                        },
+                        error: function(err) {
+                            console.log(">>>>>>> create error ",err);
+                            toastr.error("unable to Create geofence !");
+                        }
+                    });
+             
+        })
+    
+    function removePolygon(){ 
+        var polylength = polygons.length;
+        if (polylength > 0) {
+            for (var i = 0; i < polylength; i++) {
+            map1.removeLayer(polygons[i]); /* remove Polygon layer from map*/
+            }
+        }
+        delete polygons;
+        poly = '';
+        polygons = [];
+        map1.closePopup();
+    }
+    function showCircle() {
+        document.getElementById('result').innerHTML = "";
+        if (currentDiameter)
+            map.removeLayer(currentDiameter);
+
+        lat = document.getElementById('lat').value;
+        lon = document.getElementById('long').value;
+        radius = document.getElementById('radius').value;
+        if (lat != '' && lon != '' && radius != '') {
+            if (checkValidLatlong(parseFloat(lat), parseFloat(lon))) {
+                if (marker)
+                    marker.setLatLng([lat, lon]);
+                currentDiameter = L.circle([lat, lon], {
+                    color: 'pink',
+                    fillColor: '#FFC0CB',
+                    fillOpacity: 0.5,
+                    radius: radius
+                });
+                currentDiameter.addTo(map);
+                map.fitBounds(currentDiameter.getBounds());
+            }
+        }
+        else {
+            document.getElementById('result').innerHTML = "Insufficient parameters";
+        }
+    }
+
+
+    function isNumberKeyDecimals(evt) {
+        /*check for input boxes*/
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode != 46 && (charCode < 48 || charCode > 57)))
+            return false;
+        return true;
+    }
+
+    function checkValidLatlong(lat, lon) {
+        /*check for input as valid lat lon*/
+        if (lat >= 180 || lat <= -180 || lon >= 180 || lon <= -180) {
+            document.getElementById('result').innerHTML = "Invalid Lat lon values";
+            return false;
+        } else {
+            return true;
+        }
+    }
+     })
+    </script>
+</body>
+
+</html>

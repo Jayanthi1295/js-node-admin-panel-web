@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title> ACSL | Geofence Group Page</title>
+
+    <!-- Custom fonts for this template-->
+    <!-- <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet"> -->
+
+    <!-- Custom styles for this template-->
+    <!-- <link href="../css/sb-admin-2.min.css" rel="stylesheet"> -->
+    <style type="text/css">
+        #map2{
+            position: absolute;
+            left: 2px; top: 2px; 
+            right: 2px; bottom: 2px; 
+            border: 1px solid #cccccc; 
+        }
+    </style>
+       <!-- Bootstrap core JavaScript-->
+       <script src="../vendor/jquery/jquery.min.js"></script>
+       <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
+       <!-- <script src="https://apis.mapmyindia.com/advancedmaps/api/709ba551f47efb30edcb5bd85cc66558/map_sdk?layer=vector&v=2.0&callback=initMap1" defer async></script> -->
+    <script src="https://apis.mapmyindia.com/advancedmaps/v1/709ba551f47efb30edcb5bd85cc66558/map_load?v=1.5&plugin=polylinedecorator,path.drag"></script>
+    <!-- <script src="https://apis.mapmyindia.com/advancedmaps/v1/d86841ac23d08b8fe5895515fd7bcbe1/map_load?v=1.5&plugins=coronaLayers,geoanalytics,prunecluster,heatmap"></script> -->
+</head>
+<div id="header"></div>
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+         
+        <div id="sidebar"></div>
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+                <div id="toolbar"></div>
+                <!-- Topbar -->
+               
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                     
+                    <!-- Page Heading -->
+                    <div class="align-items-center justify-content-between mb-4">
+                        <!-- <h1 class="h3 mb-0 text-gray-800">Geofence Configuration</h1> -->
+                                <div class="row inner-heading-block">
+                                    <div class="col-lg-6">
+                                        <h1 class="h3 mb-0 text-gray-800">Geofence Stats</h1>
+                                    </div>
+                                    <div class="col-lg-3"></div>
+                                    <div class="col-lg-3">
+                                   
+                                   </div>
+                               </div>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                              <li class="breadcrumb-item"><a href="#">Home</a></li>
+                              <li class="breadcrumb-item"><a href="#">Geofence</a></li>
+                              <li class="breadcrumb-item active" aria-current="page">Geofence Stats</li>
+                            </ol>
+                          </nav>
+                        <p class="mb-4">Geofence Stats Info.</p>
+                        <!-- <a href="/live-maps.html" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Visit Tracking</a> -->
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="card position-relative">
+                        <!-- <div class="row">
+                            <h5 class="card-header">Featured</h5>
+                            <div class="card-body">
+                              <h5 class="card-title">Special title treatment</h5>
+                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                              <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                          </div> -->
+                          <div class="card-header py-3">
+                            <!-- <h6 class="m-0 font-weight-bold text-primary">Total Count :  <span class="btn btn-primary btn-sm device-count">1</span></h6> -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6 class="m-0 font-weight-bold text-primary">Total Count :  <span class="btn btn-primary btn-sm device-count">1</span></h6>
+                                </div>
+                                <div class="col-md-6 form-row">
+                                    <div class="col">
+                                        <div class="device_dropdown">
+                                            <select id="devices" name="devices" class="form-control">
+                                               <option disabled selected>Select Devices</option>
+                                                <option value="1">Device 1</option>
+                                            </select>
+                                       </div>
+                                    </div>  
+                                    <div class="col">
+                                      <div class="geofence_dropdown">
+                                           <select id="geofence" name="geofence" class="form-control" onchange="geofenceChange('View',this)">
+                                              
+                                               
+                                           </select>
+                                      </div>
+                                    </div>  
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+
+                            <div class="row map-block">
+                               <div class="col-lg-6">
+                                <div class="card shadow mb-4">
+                                    <!-- Card Header - Dropdown -->
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Distance matrix</h6>
+                                    </div>
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <!-- <div id="geofence_data">
+                                            <table class="table table-responsive"> -->
+                                          <div class="table-responsive list-content " >
+                                            <table class="table table-bordered geofencetable" id="dataTable" width="100%" cellspacing="0">
+                                                 <thead>
+                                                     <tr>
+                                                         <th>S.No</th>
+                                                         <th>Device Name</th>
+                                                         <th>Geofence Name</th>
+                                                         <th>Status</th>
+                                                         <th>Entry Time</th>
+                                                         <th>Exit Time</th>
+                                                         <th>Duration</th>
+                                                     </tr>
+                                                 </thead>
+                                                 <tbody id="tablecontent">
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>Device 1</td>
+                                                        <td>Sample Test</td>
+                                                        <td>Inside</td>
+                                                        <td>--:--:--</td>
+                                                        <td>10:12:12 </td>
+                                                        <td>--:--:--</td>
+                                                    </tr>
+                                                 </tbody>
+                                            </table> 
+                                          </div>
+                                          <div class="note_blk hide">
+                                            
+                                          </div>
+                                        <!-- <div class="chart-pie pt-4">
+                                            No chart data available
+                                            <canvas id="myPieChart"></canvas>
+                                            </div> 
+                                         -->
+                                        <hr>
+                                        <!-- Styling for the donut chart can be found in the
+                                        <code>/js/demo/chart-pie-demo.js</code> file. -->
+                                    </div>
+                                </div>
+                               </div>
+                                <div class="col-lg-6">
+                                     <div id="map2"></div>
+                               </div>
+                            </div> 
+                      
+                          
+                       </div>
+                    </div>
+                    <!-- <div class="row">
+                       
+                    
+                        <div class="col-lg-6">
+
+                            <div class="btn-div" ><button onclick="drawCarMarkerOnPolyline()" id="visible" >Redraw Polyline</button></div>
+                            <div class="btn-div" ><button onclick="drawArrowOnPolyline()" id="visible" >Draw Arrow on Polyline</button></div>
+                            <div class="btn-div" ><button onclick="drawRepeatedPatternOnPolyline()" id="visible" >Draw Repeated Pattern</button></div>
+                    
+                            <div class="btn-div" ><button onclick="removePolyline()" id="visible" >Remove Polyline</button></div>
+
+                        </div>
+
+                    
+                        <div class="col-lg-6">
+                            
+                        </div>
+
+                    </div> -->
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Acsl Admin Panel @ 2022</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+            </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+          
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+  
+ 
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin-2.min.js"></script>
+    <script>
+          $("#header").load("header.html"); 
+          $("#toolbar").load("toolbar.html");
+          $("#sidebar").load("sidebar.html"); 
+          $("#footer").load("footer.html"); 
+      
+      //  window.onload = function () {
+             var lat = 28.6129602407977;
+             var lon = 77.22945570945740;
+             var radius = 0;
+             var marker;
+             var map, map1;
+             var currentDiameter;
+             var localserver= true;
+            var center = new L.LatLng(28.549948, 77.268241);
+            var mapOptions = {
+                center: center,
+               // editable: true,
+                zoomControl: true,
+                hybrid: true,
+                location: true,
+                scrollwheel:false
+            };
+            var polygons = [];
+            var visbility = false;
+            var p1 = null;
+            var poly;
+            var pts; 
+            var geoactivityData, selectedDevice, selectedGeofence, uniqueDevice;
+            map1 = new MapmyIndia.Map('map2', mapOptions);
+        //    function initMap1() {
+        //                     map = new MapmyIndia.Map('map2', 
+        //                     {
+        //                         center: [28.5507160000001,77.2689280000001],
+        //                         zoomControl: true,
+        //                         location: true,
+        //                         scrollwheel:false
+        //                     });
+        //                 }
+            var API_URL = "http://localhost:8000/api/" +"geofences"; 
+            var token = localStorage.getItem("access_token");
+              console.log(">>> API_URL ",API_URL);
+              $.ajax({
+                        type: 'GET',
+                        url: API_URL+'/getactivities',
+                        //data: 'key=Geofence',
+                        cache: false,
+                        dataType : "json",
+                        headers: {"Authorization":"Bearer "+ token},
+                        success: function(response) {
+                           console.log(">>> succsss response ",response);
+                           console.log(">>> response ",response.response)
+                          
+                           if(localserver){
+                            data = response.response;
+                            parseddata = data.data;    
+                           }else{
+                                // MMI data
+                             data= JSON.parse(response.data);
+                             parseddata = data.data;
+                           }
+                           length = parseddata.length;
+                           console.log(">>> parsed data for geoactivities ",parseddata, ">>>> length ",length);
+                           geoactivityData = parseddata;
+                        //    uniqueDevice = _.keyBy(parseddata,"deviceId");
+                        //    console.log(">>>> unique devices",uniqueDevice);
+                           var dropdown_content='<option val="" disabled selected>Select Device</option> ';
+                           var content=''; 
+                        //    _.forEach(uniqueDevize,function(item){
+                        //             console.log(">>>> item ",item);
+                        //         })
+
+                        var deviceInfo=[];
+                            if(length>0){
+                                for (var i = 0; i < length; i++) {
+                                content += '<tr id="' + parseddata[i].id + '">';
+                                content += '<td>'+(i+1)+'</td>';
+                                content += '<td>' + parseddata[i].deviceName + '</td>';
+                                content += '<td>' + parseddata[i].geofenceName + '</td>';
+                                var status ='Inside';
+                                content += '<td>' +status+ '</td>';
+                                let t1=new Date(parseddata[i].entryTimestamp);
+                                content += '<td>' +  t1.toLocaleString('en-US')+ '</td>';
+                                let t2=new Date(parseddata[i].exitTimestamp);
+                                content += '<td>' + t2.toLocaleString('en-US') + '</td>';
+                                let duration = new Date(t2) - new Date(t1); 
+                                content += '<td>'+duration+' </td>';
+                                content += '</tr>';   
+                              
+                                // let 
+                                // var mk = L.marker(objPoint, {
+                                //     draggable: true
+                                // }).addTo(map1);
+
+                                dropdown_content+='<option data-buffer='+parseddata[i].buffer+' data-geotype='+parseddata[i].type+' data-geoname="'+parseddata[i].name+'" value='+JSON.stringify(parseddata[i].geometry)+'>'+parseddata[i].name+'</option>';
+                                }                             
+                            }else{
+                                content+='<tr style="text-align:center;"><td colspan="7">No Records Found</td></tr>';
+                            }
+                            console.log(">>>>>>>>>>>> content ",content);
+                           // var geoactivityData, selectedDevice, selectedGeofence;
+                             $('.geofencetable tbody').html(content); 
+                           //  $(".message-content").html('<div class="alert alert-success" id="success-alert"><button type="button" class="close" data-dismiss="alert">x</button><strong>Success!!!</strong>  Successfully Logged In</div>');
+                            //$("#commentList").append("Name:" + $("#name").val() + "<br/>comment:" + $("#body").val());
+                            // setTimeout(function(){
+                            //   window.location.href='/app/dashboard.html';
+                            // },100);
+                        },
+                        error: function(err) {
+                            console.log(">>>>>>> geoactivity error ",err);
+                            //$(".message-content").html('<div class="alert alert-danger" id="success-alert"><button type="button" class="close" data-dismiss="alert">x</button><strong>Warning!!!</strong>  Invalid Credentials</div>');
+                            //$("#commentList").append($("#name").val() + "<br/>" + $("#body").val());
+                            //alert("There was an error submitting comment");
+                        }
+             });
+               // get geofence activities
+             $.ajax({
+                        type: 'GET',
+                        url: API_URL,
+                        data: 'key=Geofence',
+                        cache: false,
+                        dataType : "json",
+                        headers: {"Authorization":"Bearer "+ token},
+                        success: function(response) {
+                           //console.log(">>> succsss response ",response);
+                          //  console.log(">>> response ",response.response)
+                          
+                           if(localserver){
+                            data = response.response;
+                            parseddata = data.data;    
+                           }else{
+                                // MMI data
+                             data= JSON.parse(response.data);
+                             parseddata = data.data;
+                           }
+                           
+                            var length= parseddata.length;
+                           $(".geoCount").text(length);   
+                            // console.log(">>> data ", data,">>> length ",length," dd len ",_.size(data.data));
+                            console.log(">>>> d of 0 ",parseddata);
+                            var dropdown_content='<option val="" disabled selected>Select Geofence</option> ';
+                            var content=' '; 
+                            if(length>0){
+                                for (var i = 0; i < length; i++) {
+                                content += '<tr id="' + parseddata[i].id + '">';
+                                content += '<td><input id="check_' + [i].id + '" name="check_' + parseddata[i].id + '" type="checkbox" value="' + parseddata[i].id + '" autocomplete=OFF /></td>';
+                                content += '<td>' + parseddata[i].id + '</td>';
+                                content += '<td>' + parseddata[i].type + '</td>';
+                                content += '<td>' + parseddata[i].name + '</td>';
+                                content += '<td>' + (parseddata[i].buffer?parseddata[i].buffer:'-') + '</td>';
+                                content += '<td> </td>';
+                                let t1=new Date(parseddata[i].creationTime);
+                                content += '<td>' +  t1.toLocaleString('en-US')+ '</td>';
+                                content += '<td>';
+                                    var wrap = parseddata[i];
+                                    wrap =  JSON.stringify(wrap)
+                                content += '<a href="#" onclick=\'editGeofence('+wrap+')\' class="edit " data-obj="'+JSON.stringify(parseddata[i])+'" data-id='+parseddata[i].id+' ><i class="fa fa-edit""></i> </a>  &nbsp; ';
+                               // content += '<a href="#" onclick="editGeofence(`'+parseddata[i].geometry+'`);" class="edit " data-obj="'+JSON.stringify(parseddata[i])+'" data-id='+parseddata[i].id+' data-toggle="modal" data-target="#CreateModal"><i class="fa fa-edit""></i> </a>  &nbsp; ';
+                                content +='<a href="#"  onclick=\'deleteGeofence('+wrap+')\' class="delete " class="delete"><i class="fa fa-trash""></i> </a>';
+                                content +=' </td>';
+                                content += '</tr>';
+
+                                dropdown_content+='<option data-id='+parseddata[i]._id+' data-buffer='+parseddata[i].buffer+' data-geotype='+parseddata[i].type+' data-geoname="'+parseddata[i].name+'" value='+JSON.stringify(parseddata[i].geometry)+'>'+parseddata[i].name+'</option>';
+                                }
+
+                            }else{
+                                content+='<tr style="text-align:center;"><td colspan="8">No Records Found</td></tr>';
+                            }
+                            
+                            //$("#tablecontent").html(tableBody);
+                            $("#geofence").html(dropdown_content);
+                          //  $('.geofencetable tbody').html(content); 
+                          //  $(".message-content").html('<div class="alert alert-success" id="success-alert"><button type="button" class="close" data-dismiss="alert">x</button><strong>Success!!!</strong>  Successfully Logged In</div>');
+                            //$("#commentList").append("Name:" + $("#name").val() + "<br/>comment:" + $("#body").val());
+                            // setTimeout(function(){
+                            //   window.location.href='/app/dashboard.html';
+                            // },100);
+                        },
+                        error: function(err) {
+                            console.log(">>>>>>> error ",err);
+                           // $(".message-content").html('<div class="alert alert-danger" id="success-alert"><button type="button" class="close" data-dismiss="alert">x</button><strong>Warning!!!</strong>  Invalid Credentials</div>');
+                            //$("#commentList").append($("#name").val() + "<br/>" + $("#body").val());
+                            //alert("There was an error submitting comment");
+                        }
+             });
+
+             function geofenceChange(action, event){
+                 console.log("action    ",action, ">>>> event ",event);
+                 var val = event.value;
+                 var opt = event.options[event.selectedIndex];
+                 var geotype = opt.dataset.geotype;
+                 var geoname = opt.dataset.geoname;
+                 var geobuffer = opt.dataset.buffer;
+                 var geoid = opt.dataset.id;
+                 console.log(">>> val type ",val, ">>>> opt ",opt , ">>> val.type ",geotype, "name ",opt.dataset.geoname,">>> option radius ",geobuffer);
+                 var parsedVal = JSON.parse(val);
+                 console.log(">>> parsedval ", parsedVal);
+                 var coordinates = (parsedVal && parsedVal.coordinates)? parsedVal.coordinates:centre;
+                 console.log(">>>> geoactivitydata ",geoactivityData);
+                 var selectedgeofenceBydevice = geoactivityData.filter(function(item){
+                      console.log(">>> item ",item.geofenceId, ">>> geoid ",geoid);
+                      return (item.geofenceId==geoid);
+                 })
+                 console.log(">>> selectedgeofenceBydevice ",selectedgeofenceBydevice);
+
+            
+
+                 if(geotype=='Polygon'){
+                    console.log(">>> mapOptions ",mapOptions);
+                    $(".note_blk").addClass('hide'); 
+                    removePolygon();
+                    var patArr = [];
+                                    for (var i = 0; i < coordinates.length; i++) {
+                                        patArr.push(new L.LatLng(coordinates[i][0], coordinates[i][1]));
+                                    }
+                                    var polygonOptions={
+                                        fillColor:"blue",
+                                       fillOpacity: 0.8,
+                                       fitbounds:true,
+                                       fitboundOptions:{padding: 120,duration:1000},
+                                        popupHtml:'Geofence',
+                                        popupOptions:{offset: {'bottom': [0, -20]}
+                                    }
+                                    }
+                                    map1.remove()
+                                    map1 = new MapmyIndia.Map('map2', mapOptions); // init
+
+                                   
+                                    if(selectedgeofenceBydevice.length>0){
+                                        for(var i=0;i<selectedgeofenceBydevice.length;i++){
+                                            console.log(">>>> selectedgeofenceBydevice ",selectedgeofenceBydevice[i]);
+                                                // let objPoint= new L.LatLng('28.4843', '77.0965');
+                                               // let objPoint= new L.LatLng('28.48438411566503', '77.0965299999095');
+                                                let objPoint= new L.LatLng(selectedgeofenceBydevice[i].entryLatitude, selectedgeofenceBydevice[i].entryLongitude);
+                                                var icon = new L.icon({iconUrl: 'img/drone-vector.jpg', iconRetinaUrl: 'img/drone-vector.jpg', iconSize: [40, 40]});
+                                                var iconOption = {icon: icon};
+                                                //marker = new L.marker(objPoint, iconOption).addTo(map1);
+                                                L.marker(objPoint,iconOption).addTo(map1);
+            
+                                              
+                                               var dronePoint=[selectedgeofenceBydevice[i].entryLatitude,selectedgeofenceBydevice[i].entryLongitude];
+                                               var centerPoint = [Number(coordinates[0]).toPrecision(6),Number(coordinates[1]).toPrecision(6)];
+                                               console.log(">>> dronePoint ",dronePoint,">>>> coordinates ",coordinates, ">>> center ",centerPoint);
+                                              var boundaryResult = checkIfInsidePolygon(dronePoint,patArr);
+                                            // var circle_x= centerPoint[0];
+                                            // var circle_y= centerPoint[1];
+                                            //  var y=selectedgeofenceBydevice[i].entryLongitude;
+                                            //  var x=selectedgeofenceBydevice[i].entryLatitude;
+                                            //  var boundaryResult = 'Outside'; // d2=(x2-x1)^2 + (y2-y1)^2
+                                            // if ((x - circle_x) * (x - circle_x) +
+                                            //                         (y - circle_y) * (y - circle_y) <= geobuffer * geobuffer)
+                                            //                         {
+                                            //                 // return true;
+                                            //                 boundaryResult = 'Inside';
+                                                                    }
+                                                                    boundaryResult=(boundaryResult)?"Inside":"Outside";
+                                                           $(".note_blk").removeClass('hide');      
+                                                           $(".note_blk").html('<span class="text text-danger"><strong>Note:</strong></span><p>'+selectedgeofenceBydevice[0].deviceName+' is <i><b>'+boundaryResult+'</b></i> '+selectedgeofenceBydevice[0].geofenceName+'. </p> ');                     
+                                                        console.log(">>>> boundary result for polygon ",boundaryResult);
+
+                                        }
+                                    else{
+                                        $(".note_blk").addClass('hide'); 
+                                    }
+
+                                poly= new L.polygon(patArr, polygonOptions);
+                                
+                                poly.on("mousedown", function(e) { /*mouseup event on polygon P2*/
+                                console.log(">>>> mouse down e ",e);
+                                        // getBounds(poly, "Yellow polygon");
+                                });
+                            //   var p1 = new L.polygon(patArr, {color: "blue", draggable: true});/**creates a polygon with colour: green*/
+
+                                //lets listen to the click event to show a quick pop up as well. 
+                                poly.on("click", function (e) 
+                                {
+                                //Binding the popup to the polygon
+                                var popupcontent='<p><strong>Geofence Name:</strong>'+geoname+'</p><p><strong>Type:</strong>'+geotype+'</p>';
+                                poly.bindPopup(popupcontent).openPopup();
+                                });
+                        map1.addLayer(poly); 
+                        polygons.push(poly);
+                }
+                else if(geotype=='Circle'){
+                    $(".note_blk").addClass('hide');  
+                        map1.remove();
+                   var icon = L.icon({iconUrl: 'img/marker.png', iconRetinaUrl: 'img/marker.png', iconSize: [30, 30]});
+                    var iconOption = {icon: icon};
+        
+                    map1 = new MapmyIndia.Map('map2', mapOptions); // list
+                    iconOption.draggable= false;
+                    marker = L.marker(center, iconOption).addTo(map1);
+
+                    if(selectedgeofenceBydevice.length>0){
+                                        for(var i=0;i<selectedgeofenceBydevice.length;i++){
+                                            console.log(">>>> selectedgeofenceBydevice ",selectedgeofenceBydevice[i]);
+                                                // let objPoint= new L.LatLng('28.4843', '77.0965');
+                                               // let objPoint= new L.LatLng('28.48438411566503', '77.0965299999095');
+                                                let objPoint= new L.LatLng(selectedgeofenceBydevice[i].entryLatitude, selectedgeofenceBydevice[i].entryLongitude);
+                                                var icon = new L.icon({iconUrl: 'img/drone-vector.jpg', iconRetinaUrl: 'img/drone-vector.jpg', iconSize: [40, 40]});
+                                                var iconOption = {icon: icon};
+                                                //marker = new L.marker(objPoint, iconOption).addTo(map1);
+                                                L.marker(objPoint,iconOption).addTo(map1);
+                                                //L.marker([28.613052071848738, 77.22762376070024]).addTo(map);
+                                                
+                                                //finding whether circle is inside or outside
+                                                // radius=buffer , centerpoint(h,k) = coordinates[0] , coordinates[1] , coordinates(x,y) = r*sin(0) , r*cos(0)
+                                                // var rad = (Math.PI / 180) * 90;
+                                                //    var y= Math.cos(rad);
+                                                //    var x=Math.sin(rad);
+                                                //    console.log(">>> before geobuffer x ",x,">>> y ",y , ">>>> conversion x ", Number(x),">>> y ",Number(y),">> fixed y ",y.toPrecision());
+                                                //    x= geobuffer*x;
+                                                //    y= geobuffer*y;
+                                                //    console.log(">>>> coordinates x ",x, ">> y ",y,">>> sin ",Math.cos(rad) ," cos ",Math.sin(rad));
+                                                // let x=selectedgeofenceBydevice[i].entryLatitude, y=selectedgeofenceBydevice[i].entryLatitude;
+                                                // let p=coordinates[0], y=coordinates[1];
+                                              
+                                               var dronePoint=[selectedgeofenceBydevice[i].entryLatitude,selectedgeofenceBydevice[i].entryLongitude];
+                                               var centerPoint = [Number(coordinates[0]).toPrecision(6),Number(coordinates[1]).toPrecision(6)];
+                                               console.log(">>> dronePoint ",dronePoint,">>>> coordinates ",coordinates, ">>> center ",centerPoint);
+                                            //   var boundaryResult = checkIfInside(dronePoint,coordinates);
+                                            var circle_x= centerPoint[0];
+                                            var circle_y= centerPoint[1];
+                                             var y=selectedgeofenceBydevice[i].entryLongitude;
+                                             var x=selectedgeofenceBydevice[i].entryLatitude;
+                                             var boundaryResult = 'Outside'; // d2=(x2-x1)^2 + (y2-y1)^2
+                                             let newRadius = distanceInKmBetweenEarthCoordinates(dronePoint[0], dronePoint[1], centerPoint[0], centerPoint[1]);
+                                            //   if ((x - circle_x) * (x - circle_x) +
+                                            //                         (y - circle_y) * (y - circle_y) <= geobuffer * geobuffer)
+                                                   if(newRadius<geobuffer)
+                                                                    {
+                                                            // return true;
+                                                            boundaryResult = 'Inside';
+                                                                    }          
+                                                      // console.log("device Radius new",newRadius);
+                                                           $(".note_blk").removeClass('hide');      
+                                                           $(".note_blk").html('<span class="text text-danger"><strong>Note:</strong></span><p>'+selectedgeofenceBydevice[0].deviceName+' is <i><b>'+boundaryResult+'</b></i> '+selectedgeofenceBydevice[0].geofenceName+'. </p> ');                     
+                                                      //  console.log(">>>> boundary result ",boundaryResult);
+
+                                        }
+                                    }else{
+                                        $(".note_blk").addClass('hide'); 
+                                    }
+                   if (currentDiameter)
+                       map1.removeLayer(currentDiameter);
+                    lat = coordinates[0];
+                    lon = coordinates[1];
+                    radius = geobuffer;
+                    console.log(">>>> currrent radius ",radius);
+                    if (lat != '' && lon != '' && radius != '') {
+                        if (checkValidLatlong(parseFloat(lat), parseFloat(lon))) {
+                            if (marker)
+                                marker.setLatLng([lat, lon]);
+                            currentDiameter = L.circle([lat, lon], {
+                                color: 'blue',
+                                fillColor: '#4e73df',
+                                fillOpacity: 0.5,
+                                radius: radius
+                            });
+                            currentDiameter.addTo(map1);
+                            map1.fitBounds(currentDiameter.getBounds());
+                        }
+                    }
+                
+                }
+                else{
+
+                }  
+
+             }
+             function checkIfInsidePolygon(point, vs) {
+                // ray-casting algorithm based on
+                // https://wrf.ecse.rpi.edu/Research/Short_Notes/pnpoly.html/pnpoly.html
+                
+                var x = point[0], y = point[1];
+                
+                var inside = false;
+                for (var i = 0, j = vs.length - 1; i < vs.length; j = i++) {
+                    var xi = vs[i][0], yi = vs[i][1];
+                    var xj = vs[j][0], yj = vs[j][1];
+                    
+                    var intersect = ((yi > y) != (yj > y))
+                        && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+                    if (intersect) inside = !inside;
+                }
+                
+                return inside;
+            };
+             function checkIfInsideCircle(Coordinates,center) {
+                let newRadius = distanceInKmBetweenEarthCoordinates(Coordinates[0], Coordinates[1], center[0], center[1]);
+                console.log("device Radius ",newRadius)
+
+                if( newRadius < radius ) {
+                    //point is inside the circle
+                    return "In side";
+                    console.log('inside')
+                }
+                else if(newRadius > radius) {
+                    //point is outside the circle
+                    return "Outside";
+                    console.log('Out side')
+                }
+                else {
+                    //point is on the circle
+                    return "On The Circle";
+                    console.log('on the circle')
+                }
+
+            }
+            function distanceInKmBetweenEarthCoordinates(lat1, lon1, lat2, lon2) {
+                    // var earthRadiusKm = 6371;
+
+                    // var dLat = degreesToRadians(lat2-lat1);
+                    // var dLon = degreesToRadians(lon2-lon1);
+
+                    // lat1 = degreesToRadians(lat1);
+                    // lat2 = degreesToRadians(lat2);
+
+                    // var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                    //         Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+                    // var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+                    // return earthRadiusKm * c;
+                    // }
+
+                    // function degreesToRadians(degrees) {
+                    // return degrees * Math.PI / 180;
+                    const R = 6371e3; // metres
+                const φ1 = lat1 * Math.PI/180; // φ, λ in radians
+                const φ2 = lat2 * Math.PI/180;
+                const Δφ = (lat2-lat1) * Math.PI/180;
+                const Δλ = (lon2-lon1) * Math.PI/180;
+
+                const a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+                        Math.cos(φ1) * Math.cos(φ2) *
+                        Math.sin(Δλ/2) * Math.sin(Δλ/2);
+                const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+                const d = R * c;
+                  return d;
+                    }
+            function removePolygon(){ 
+                var polylength = polygons.length;
+                if (polylength > 0) {
+                    for (var i = 0; i < polylength; i++) {
+                    map1.removeLayer(polygons[i]); /* remove Polygon layer from map*/
+                    }
+                }
+                delete polygons;
+                poly = '';
+                polygons = [];
+                map1.closePopup();
+            }
+            function showCircle() {
+                document.getElementById('result').innerHTML = "";
+                if (currentDiameter)
+                    map.removeLayer(currentDiameter);
+
+                lat = document.getElementById('lat').value;
+                lon = document.getElementById('long').value;
+                radius = document.getElementById('radius').value;
+                if (lat != '' && lon != '' && radius != '') {
+                    if (checkValidLatlong(parseFloat(lat), parseFloat(lon))) {
+                        if (marker)
+                            marker.setLatLng([lat, lon]);
+                        currentDiameter = L.circle([lat, lon], {
+                            color: 'pink',
+                            fillColor: '#FFC0CB',
+                            fillOpacity: 0.5,
+                            radius: radius
+                        });
+                        currentDiameter.addTo(map);
+                        map.fitBounds(currentDiameter.getBounds());
+                    }
+                }
+                else {
+                    document.getElementById('result').innerHTML = "Insufficient parameters";
+                }
+            }
+             function checkValidLatlong(lat, lon) {
+                /*check for input as valid lat lon*/
+                if (lat >= 180 || lat <= -180 || lon >= 180 || lon <= -180) {
+                    document.getElementById('result').innerHTML = "Invalid Lat lon values";
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+                // $.ajax({
+                //         type: 'POST',
+                //         url: API_URL,
+                //         data: dataString,
+                //         cache: false,
+                //         dataType : "json",
+                //        // data: $('#addCommentForm').serialize(), 
+                //         success: function(response) {
+                //             console.log(">>> succsss response ",response);
+                //           lStorage.setItem("user", JSON.stringify(response));
+                                
+                //           //  $(".message-content").html('<div class="alert alert-success" id="success-alert"><button type="button" class="close" data-dismiss="alert">x</button><strong>Success!!!</strong>  Successfully Logged In</div>');
+                //             //$("#commentList").append("Name:" + $("#name").val() + "<br/>comment:" + $("#body").val());
+                //             // setTimeout(function(){
+                //             //   window.location.href='/app/dashboard.html';
+                //             // },100);
+                //         },
+                //         error: function(err) {
+                //             console.log(">>>>>>> error ",err);
+                //            // $(".message-content").html('<div class="alert alert-danger" id="success-alert"><button type="button" class="close" data-dismiss="alert">x</button><strong>Warning!!!</strong>  Invalid Credentials</div>');
+                //             //$("#commentList").append($("#name").val() + "<br/>" + $("#body").val());
+                //             //alert("There was an error submitting comment");
+                //         }
+                //     });
+       // }
+    </script>
+</body>
+
+</html>

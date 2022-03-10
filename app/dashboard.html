@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ACSL | Admin Panel </title>
+<!-- <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous">
+</script> -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script> 
+    $(function(){
+        var currentuser = JSON.parse(localStorage.getItem("user"));
+    
+      console.log(">>>> dash current user",currentuser );
+      if(currentuser==undefined || currentuser==null  || currentuser.accessToken==undefined){
+         // redirect('../login.html');
+          window.location.href='/../index.html';
+      }else{
+        $("#header").load("header.html"); 
+        $("#sidebar").load("sidebar.html"); 
+        
+        $("#toolbar").load("toolbar.html");
+    
+        // $("#content").load("content.html"); 
+        $("#footer").load("footer.html"); 
+      }
+
+      
+
+    
+    });
+    
+
+    $(document).ready(function(){
+                              //$("#login-submit").
+          var checkToken = localStorage.getItem("access_token");
+          if(checkToken==undefined || checkToken==null  ){
+            const API_URL = "http://localhost:8000/api/" +"mmiauth/token"; 
+                    $.ajax({
+                        type: 'GET',
+                        url: API_URL,
+                        data: '',
+                        cache: false,
+                        dataType : "json",
+                       // data: $('#addCommentForm').serialize(), 
+                        success: function(response) {
+                            let tokendata = JSON.parse(response.data);
+                            console.log(">>> succsss token response ",response, ' -- ',response.data , " tokendata ",tokendata);
+                             
+                            if (tokendata.access_token) {
+                                localStorage.setItem("mapData", JSON.stringify(response.data));
+                                localStorage.setItem("access_token", tokendata.access_token);
+                                }
+                              
+                        },
+                        error: function(err) {
+                            console.log(">>>>>>> error ",err);
+                            
+                        }
+                    });
+                
+          }else{
+             // no need to call auth api again and again
+          }
+                   
+         })
+   
+</script> 
+</head>
+<div id="header"></div>
+<body id="page-top">
+    <div id="wrapper">
+       <div id="sidebar"></div>
+        
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <div id="toolbar"></div>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <a href="/app/live-maps.html" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Visit Tracking</a>
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+                    
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <img src="img/devices/drone.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="row no-gutters align-items-center">
+                        
+                                                <h5 class="card-title font-weight-bold text-info text-uppercase mb-1">UAV - Alpha</h5>
+                                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                            
+                                            </div>
+                                        </div>
+                                        <!-- <div class="col-auto">
+                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><strong>Drone ID :</strong> Alpha1</li>
+                                    <li class="list-group-item"><strong>Drone type :</strong>MultiRotor</li>
+                                    <li class="list-group-item"><strong>Status :</strong>  &nbsp;    <span class="card-link font-weight-bold text-info text-uppercase">Active</span>
+                                        &nbsp;  <a href="live-maps.html">Track</a>
+                                    </li>
+                                </ul>
+                                
+                            </div>
+                        </div>
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <img src="img/devices/device2.jpeg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="row no-gutters align-items-center">
+                        
+                                                <h5 class="card-title font-weight-bold text-primary text-uppercase mb-1">UAV - Beta</h5>
+                                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                            
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><strong>Drone ID :</strong> Beta -1</li>
+                                    <li class="list-group-item"><strong>Drone type :</strong>Fixed Wing</li>
+                                    <li class="list-group-item"><strong>Status :</strong>  &nbsp;   <span class="card-link font-weight-bold text-primary text-uppercase">Inactive</span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+                        <!-- Pending Requests Card Example -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <img src="img/devices/device3.jpg" class="card-img-top" alt="...">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <!-- <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Pending Requests</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div> -->
+                                            <h5 class="card-title font-weight-bold text-warning text-uppercase mb-1">UAV - Comma</h5>
+                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                            <!-- <a href="#" class="btn btn-primary">Track</a> -->
+                                        </div>
+                                        <!-- <div class="col-auto">
+                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><strong>Drone ID :</strong> Comma</li>
+                                    <li class="list-group-item"><strong>Drone type :</strong>Hybrid</li>
+                                    <li class="list-group-item"><strong>Status :</strong>  &nbsp;    <span class="card-link font-weight-bold text-danger text-uppercase">Idle</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Acsl Admin Panel @ 2022</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper --> 
+    </div>
+<!--Remaining section-->
+<div id="footer"></div>
+
+</body>
+</html>
+
+<!--  https://startbootstrap.com/previews/sb-admin-2  -->
